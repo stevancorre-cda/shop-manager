@@ -1,14 +1,19 @@
 package com.stevancorre.cda;
 
+import com.stevancorre.cda.gui.GUI;
 import com.stevancorre.cda.shop.*;
 
 import java.io.IOException;
-import java.util.Arrays;
+
+import static javax.swing.SwingUtilities.invokeLater;
 
 public class Main {
     public static void main(String[] args) throws IOException  {
         final Shop shop = new Shop("src/main/resources/products.txt", "");
 
-        System.out.println(Arrays.toString(shop.getProducts().toArray()));
+        invokeLater(() -> {
+            final GUI gui = new GUI("Shop manager", shop);
+            gui.open();
+        });
     }
 }
