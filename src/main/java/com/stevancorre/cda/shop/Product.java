@@ -18,6 +18,10 @@ public final class Product {
         this.quantity = quantity;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
