@@ -63,12 +63,7 @@ public class Shop {
         return client;
     }
 
-    public Order makeOrder(final Client client, final OrderProduct[] products) throws NotEnoughProductsInStocksException {
-        for (final OrderProduct orderProduct : products) {
-            if(orderProduct.quantity() > orderProduct.product().getAvailableQuantity())
-                throw new NotEnoughProductsInStocksException(orderProduct.product());
-        }
-
+    public Order makeOrder(final Client client, final OrderProduct[] products) {
         final Order order = new Order(client, products);
         orders.add(order);
 
