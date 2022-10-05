@@ -31,6 +31,10 @@ public final class GUIUtils {
         }};
     }
 
+    public static JLabel makeLabel(final String text) {
+        return new JLabel(text);
+    }
+
     public static JLabel makeLabel(final String text, final Consumer<JLabel> configure) {
         return new JLabel(text) {{
             configure.accept(this);
@@ -40,5 +44,13 @@ public final class GUIUtils {
     public static void showError(final String message) {
         JOptionPane.showMessageDialog(null, message, "Error",
                 JOptionPane.ERROR_MESSAGE);
+    }
+
+    public static Component makeHorizontalSpace() {
+        return Box.createRigidArea(new Dimension(5, 0));
+    }
+
+    public static Component makeVerticalSpace() {
+        return Box.createRigidArea(new Dimension(0, 5));
     }
 }
