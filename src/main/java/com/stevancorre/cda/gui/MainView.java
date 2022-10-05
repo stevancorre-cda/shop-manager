@@ -1,5 +1,6 @@
 package com.stevancorre.cda.gui;
 
+import com.stevancorre.cda.gui.orders.OrdersView;
 import com.stevancorre.cda.gui.products.ProductsPanel;
 import com.stevancorre.cda.shop.Shop;
 
@@ -15,7 +16,7 @@ public final class MainView extends JPanel {
         add(new JTabbedPane() {{
             addTab("Products", new ProductsPanel(shop));
             addTab("Clients", makeTextPanel("Panel #2s"));
-            addTab("Orders", makeTextPanel("Panel #3"));
+            addTab("Orders", new OrdersView(shop));
         }});
     }
 }
