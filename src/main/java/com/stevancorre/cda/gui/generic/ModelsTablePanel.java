@@ -23,6 +23,8 @@ public abstract class ModelsTablePanel<T> extends JSplitPane {
             final EditModelPanel<T> editPanel) {
         super(JSplitPane.HORIZONTAL_SPLIT);
 
+        setDividerSize(0);
+
         this.data = data;
         this.columns = columns;
         this.model = new DefaultTableModel(0, 0);
