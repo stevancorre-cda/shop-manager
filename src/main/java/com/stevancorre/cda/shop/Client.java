@@ -5,19 +5,29 @@ import java.util.UUID;
 public class Client {
     private final UUID id;
 
-    private final String name;
+    private String firstName;
+    private String lastName;
 
-    Client(final String name) {
+    Client(final String firstName, final String lastName) {
         this.id = UUID.randomUUID();
 
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public UUID getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFullName() {
+        return String.format("%s %S", getFirstName(), getLastName());
     }
 }

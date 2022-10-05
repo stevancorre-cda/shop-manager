@@ -56,8 +56,8 @@ public class Shop {
         return product;
     }
 
-    public Client registerClient(final String name) {
-        final Client client = new Client(name);
+    public Client registerClient(final String firstName, final String lastName) {
+        final Client client = new Client(firstName, lastName);
         clients.add(client);
 
         return client;

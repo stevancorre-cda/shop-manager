@@ -17,7 +17,7 @@ public class OrdersTablePanel extends ModelsTablePanel<Order> {
     protected Object[] extractRow(final Order order) {
         return new Object[]{
                 order.getStatus(),
-                order.getClient().getName(),
+                order.getClient().getFullName(),
                 order.getFormattedDate(),
                 order.getProductsCount(),
                 String.format("%.2f EUR", order.getTotalPrice()),

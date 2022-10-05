@@ -12,7 +12,7 @@ public class Main {
         final Shop shop = new Shop("src/main/resources/products.txt", "");
 
         final Product product = shop.createProduct("baguette de pain super cher", 10, 100);
-        final Client client = shop.registerClient("michel");
+        final Client client = shop.registerClient("michel", "bleas");
         shop.makeOrder(client, new OrderProduct[]{new OrderProduct(product, 2)});
 
         invokeLater(() -> {
