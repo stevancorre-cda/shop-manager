@@ -1,5 +1,6 @@
 package com.stevancorre.cda.shop;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
@@ -54,6 +55,11 @@ public class Order {
 
     public Date getDate() {
         return date;
+    }
+
+    public String getFormattedDate() {
+        final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        return format.format(getDate());
     }
 
     public OrderStatus getStatus() {
