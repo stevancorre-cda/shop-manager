@@ -2,7 +2,7 @@ package com.stevancorre.cda.gui.generic;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 
 import static com.stevancorre.cda.gui.GUIUtils.makeLabel;
 
@@ -15,6 +15,7 @@ public abstract class EditModelPanel<T> extends JPanel {
     protected EditModelPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setVisible(false);
+        setMinimumSize(new Dimension(265, 0));
 
         this.modelChangedListeners = new ArrayList<>();
         this.editingDoneListeners = new ArrayList<>();
