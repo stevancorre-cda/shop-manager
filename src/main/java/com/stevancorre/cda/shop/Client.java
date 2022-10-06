@@ -30,4 +30,9 @@ public class Client {
     public String getFullName() {
         return String.format("%s %S", getFirstName(), getLastName());
     }
+
+    @Override
+    public String toString() {
+        return getFullName();
+    }
 }
