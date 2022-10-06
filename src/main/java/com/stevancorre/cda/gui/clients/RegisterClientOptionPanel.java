@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import static com.stevancorre.cda.gui.GUIUtils.makeLabel;
+import static com.stevancorre.cda.gui.GUIUtils.showError;
 
 class RegisterClientOptionPanel extends JPanel {
     private final JTextField firstNameField;
@@ -31,12 +32,22 @@ class RegisterClientOptionPanel extends JPanel {
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.PLAIN_MESSAGE);
 
-        if (result == JOptionPane.OK_OPTION)
-            return new RegisterClientData(
-                    this.firstNameField.getText(),
-                    this.firstNameField.getText());
-        else
-            return null;
+        try {
+            if (result == JOptionPane.OK_OPTION) {
+                final String firstName = this.firstNameField.getText();
+                final String lastName = this.lastNameField.getText();
+
+                if (firstName.isBlank() || lastName.isBlank())
+                    throw new Exception();
+
+                return new RegisterClientData(firstName, lastName);
+            } else
+                return null;
+        } catch (Exception e) {
+            showError("Invalid input");
+
+            return prompt();
+        }
     }
 }
 
