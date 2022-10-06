@@ -22,18 +22,20 @@ public class OrdersView extends JPanel {
 
     private final DefaultTableModel model;
     private final JTable table;
+    private final JLabel totalLabel;
 
     public OrdersView(final Shop shop) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.shop = shop;
 
+        this.totalLabel = makeLabel(String.format("Finalized orders total: %.2f EUR", 0.0));
+        this.model = new DefaultTableModel();
+        this.table = makeTable();
+
         add(makeVerticalSpace());
         add(makeToolbarPanel());
         add(makeVerticalSpace());
-
-        this.model = new DefaultTableModel();
-        this.table = makeTable();
         add(new JScrollPane(table));
     }
 
@@ -52,12 +54,7 @@ public class OrdersView extends JPanel {
                 add(makeHorizontalSpace());
 
                 add(Box.createHorizontalGlue());
-                final double total = shop.getOrders()
-                        .stream()
-                        .filter(x -> x.getStatus() == OrderStatus.Finalized)
-                        .mapToDouble(Order::getTotalPrice)
-                        .sum();
-                add(makeLabel(String.format("Finalized orders total: %.2f EUR", total)));
+                add(totalLabel);
             }});
         }};
     }
@@ -69,6 +66,13 @@ public class OrdersView extends JPanel {
                         .toArray(Object[][]::new),
                 new String[]{"Status", "Date", "Client", "Products count", "Total price"}
         );
+
+        final double total = shop.getOrders()
+                .stream()
+                .filter(x -> x.getStatus() == OrderStatus.Finalized)
+                .mapToDouble(Order::getTotalPrice)
+                .sum();
+        totalLabel.setText(String.format("Finalized orders total: %.2f EUR", total));
     }
 
     private JTable makeTable() {
