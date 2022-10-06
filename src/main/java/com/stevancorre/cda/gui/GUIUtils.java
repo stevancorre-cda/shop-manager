@@ -1,7 +1,11 @@
 package com.stevancorre.cda.gui;
 
 import javax.swing.*;
+import javax.swing.text.NumberFormatter;
 import java.awt.*;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.function.Consumer;
 
 /**
@@ -82,5 +86,39 @@ public final class GUIUtils {
      */
     public static Component makeVerticalSpace() {
         return Box.createRigidArea(new Dimension(0, 5));
+    }
+
+    /**
+     * Make a text field that accepts only integers
+     */
+    public static JFormattedTextField makeIntTextField() {
+        final NumberFormat format = NumberFormat.getInstance();
+        final NumberFormatter formatter = new NumberFormatter(format);
+        formatter.setValueClass(Integer.class);
+        formatter.setMinimum(0);
+        formatter.setMaximum(Integer.MAX_VALUE);
+        formatter.setAllowsInvalid(false);
+        formatter.setCommitsOnValidEdit(true);
+
+        return new JFormattedTextField(formatter);
+    }
+
+    /**
+     * Make a text field that accepts only doubles
+     */
+    public static JFormattedTextField makeDoubleTextField() {
+        final NumberFormat format = DecimalFormat.getInstance();
+        format.setMinimumFractionDigits(2);
+        format.setMaximumFractionDigits(2);
+        format.setRoundingMode(RoundingMode.HALF_UP);
+
+        final NumberFormatter formatter = new NumberFormatter(format);
+        formatter.setValueClass(Double.class);
+        formatter.setMinimum(0);
+        formatter.setMaximum(Double.MAX_VALUE);
+        formatter.setAllowsInvalid(false);
+        formatter.setCommitsOnValidEdit(true);
+
+        return new JFormattedTextField(format);
     }
 }
