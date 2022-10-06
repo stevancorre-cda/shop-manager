@@ -73,7 +73,7 @@ public class ProductsView extends JPanel {
         final CreateProductOptionPanel panel = new CreateProductOptionPanel();
         final CreateProductData data = panel.prompt();
 
-        if(data == null) return;
+        if (data == null) return;
 
         shop.createProduct(data.name(), data.price(), data.quantity());
         updateData();

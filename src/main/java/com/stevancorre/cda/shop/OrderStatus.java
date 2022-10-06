@@ -9,7 +9,6 @@ public enum OrderStatus {
      */
     Preparing,
     /**
-     *
      * Order was successfully shipped
      */
     Finalized

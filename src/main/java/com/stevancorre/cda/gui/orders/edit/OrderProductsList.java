@@ -50,11 +50,11 @@ class OrderProductsList extends JPanel {
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(final MouseEvent event) {
-                    if(!table.isEnabled()) return;
-                    if(event.getClickCount() != 2) return;
+                    if (!table.isEnabled()) return;
+                    if (event.getClickCount() != 2) return;
 
                     final int index = table.rowAtPoint(event.getPoint());
-                    if(index == -1) return;
+                    if (index == -1) return;
 
                     handleEditOrderProduct(products[index]);
                 }

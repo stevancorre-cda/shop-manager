@@ -76,7 +76,7 @@ public class CustomersView extends JPanel {
         final RegisterCustomerOptionPanel panel = new RegisterCustomerOptionPanel();
         final RegisterCustomerData data = panel.prompt();
 
-        if(data == null) return;
+        if (data == null) return;
 
         shop.registerCustomer(data.firstName(), data.lastName());
         updateData();

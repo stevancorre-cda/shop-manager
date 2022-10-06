@@ -44,7 +44,7 @@ class CreateProductOptionPanel extends JPanel {
 
                 if (name.isBlank())
                     throw new Exception();
-                
+
                 return new CreateProductData(
                         name,
                         price,

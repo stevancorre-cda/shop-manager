@@ -21,7 +21,6 @@ public final class Product {
         this.quantity = quantity;
     }
 
-
     Product(final String name, final double price, final int quantity) {
         this(UUID.randomUUID(), name, price, quantity);
     }
