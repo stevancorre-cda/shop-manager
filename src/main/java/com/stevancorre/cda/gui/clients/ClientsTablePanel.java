@@ -33,7 +33,7 @@ public class ClientsTablePanel extends ModelsTablePanel<Client> {
 
         final long activeOrders = clientOrders
                 .stream()
-                .filter(x -> x.getStatus() == OrderStatus.Preparing || x.getStatus() == OrderStatus.Shipped)
+                .filter(x -> x.getStatus() == OrderStatus.Preparing)
                 .count();
         final long finalizedOrders = clientOrders.size() - activeOrders;
 

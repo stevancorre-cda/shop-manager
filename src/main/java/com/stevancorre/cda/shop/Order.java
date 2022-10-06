@@ -25,10 +25,8 @@ public class Order {
 
     public void updateStatus() {
         status = switch (status) {
-            case Preparing -> OrderStatus.Shipped;
-            case Shipped -> OrderStatus.Finalized;
-
-            default -> throw new IllegalArgumentException("Order already finalized");
+            case Preparing -> OrderStatus.Finalized;
+            case Finalized -> throw new IllegalArgumentException("Order already finalized");
         };
     }
 
