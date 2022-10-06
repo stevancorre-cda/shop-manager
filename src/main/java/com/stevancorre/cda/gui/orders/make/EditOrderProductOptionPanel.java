@@ -1,4 +1,4 @@
-package com.stevancorre.cda.gui.orders.orderProduct;
+package com.stevancorre.cda.gui.orders.make;
 
 import com.stevancorre.cda.shop.OrderProduct;
 import com.stevancorre.cda.shop.Product;

@@ -1,4 +1,4 @@
-package com.stevancorre.cda.gui.orders.orderProduct;
+package com.stevancorre.cda.gui.orders.make;
 
 import com.stevancorre.cda.shop.OrderProduct;
 import com.stevancorre.cda.shop.Product;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import static com.stevancorre.cda.gui.GUIUtils.makeButton;
 import static com.stevancorre.cda.gui.GUIUtils.makeLabel;
 
-public class OrderProductsList extends JPanel {
+class OrderProductsList extends JPanel {
     private final ArrayList<Product> products;
 
     private final ArrayList<OrderProduct> entries;

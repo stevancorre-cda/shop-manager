@@ -1,6 +1,5 @@
-package com.stevancorre.cda.gui.orders;
+package com.stevancorre.cda.gui.orders.make;
 
-import com.stevancorre.cda.gui.orders.orderProduct.OrderProductsList;
 import com.stevancorre.cda.shop.Client;
 import com.stevancorre.cda.shop.Shop;
 
@@ -9,11 +8,11 @@ import java.util.Vector;
 
 import static com.stevancorre.cda.gui.GUIUtils.makeLabel;
 
-class MakeOrderOptionPanel extends JPanel {
+public class MakeOrderOptionPanel extends JPanel {
     private final JComboBox<Client> clientField;
     private final OrderProductsList productsList;
 
-    MakeOrderOptionPanel(final Shop shop) {
+    public MakeOrderOptionPanel(final Shop shop) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentX(LEFT_ALIGNMENT);
 
