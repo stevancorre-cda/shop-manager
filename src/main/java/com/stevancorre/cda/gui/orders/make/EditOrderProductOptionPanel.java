@@ -8,7 +8,7 @@ import javax.swing.*;
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
 class EditOrderProductOptionPanel extends JPanel {
-    private final JTextField quantityField;
+    private final JFormattedTextField quantityField;
     private final Product product;
 
     EditOrderProductOptionPanel(final OrderProduct entry) {
@@ -21,7 +21,7 @@ class EditOrderProductOptionPanel extends JPanel {
             setEnabled(false);
         }};
         quantityField = makeIntTextField();
-        quantityField.setText(String.valueOf(entry.getQuantity()));
+        quantityField.setValue(entry.getQuantity());
 
         add(makeLabel("Product", l -> l.setLabelFor(productField)));
         add(productField);
