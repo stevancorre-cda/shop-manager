@@ -1,6 +1,6 @@
 package com.stevancorre.cda.gui;
 
-import com.stevancorre.cda.gui.clients.ClientsView;
+import com.stevancorre.cda.gui.customers.CustomersView;
 import com.stevancorre.cda.gui.orders.OrdersView;
 import com.stevancorre.cda.gui.products.ProductsPanel;
 import com.stevancorre.cda.shop.Shop;
@@ -16,15 +16,15 @@ public final class MainView extends JPanel {
         super(new BorderLayout());
 
         final ProductsPanel productsPanel = new ProductsPanel(shop);
-        final ClientsView clientsPanel = new ClientsView(shop);
+        final CustomersView customersView = new CustomersView(shop);
         add(new JTabbedPane() {{
             addTab("Products", productsPanel);
-            addTab("Clients", clientsPanel);
+            addTab("Clients", customersView);
             addTab("Orders", new OrdersView(shop));
 
             addChangeListener(e -> {
                 productsPanel.updateData();
-                clientsPanel.updateData();
+                customersView.updateData();
             });
         }});
     }

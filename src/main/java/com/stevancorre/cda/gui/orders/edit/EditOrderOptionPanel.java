@@ -16,16 +16,16 @@ public class EditOrderOptionPanel extends JPanel {
             setText(order.getFormattedDate());
             setEnabled(false);
         }};
-        final JTextField clientField = new JTextField() {{
-            setText(order.getClient().getFullName());
+        final JTextField customerField = new JTextField() {{
+            setText(order.getCustomer().getFullName());
             setEnabled(false);
         }};
         final OrderProductsList productsList = new OrderProductsList(order.getProducts(), order.getStatus() == OrderStatus.Finalized);
 
         add(makeLabel("Date", l -> l.setLabelFor(dateField)));
         add(dateField);
-        add(makeLabel("Client", l -> l.setLabelFor(clientField)));
-        add(clientField);
+        add(makeLabel("Customer", l -> l.setLabelFor(customerField)));
+        add(customerField);
         add(productsList);
     }
 

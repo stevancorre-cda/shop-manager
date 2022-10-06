@@ -36,14 +36,14 @@ public class ShipErrorsOptionPanel extends JPanel {
                 .stream()
                 .map(x -> new Object[]{
                         x.order().getFormattedDate(),
-                        x.order().getClient().toString(),
+                        x.order().getCustomer().toString(),
                         x.errors()
                                 .stream()
                                 .mapToInt(ShipError::quantity)
                                 .sum()
                 })
                 .toArray(Object[][]::new);
-        final Object[] columnNames = {"Order date", "Client", "Missing quantity"};
+        final Object[] columnNames = {"Order date", "Customer", "Missing quantity"};
 
         return new JTable(rowData, columnNames) {{
             setDefaultEditor(Object.class, null);

@@ -1,4 +1,4 @@
-package com.stevancorre.cda.gui.clients;
+package com.stevancorre.cda.gui.customers;
 
 
 import javax.swing.*;
@@ -7,11 +7,11 @@ import java.awt.*;
 import static com.stevancorre.cda.gui.GUIUtils.makeLabel;
 import static com.stevancorre.cda.gui.GUIUtils.showError;
 
-class RegisterClientOptionPanel extends JPanel {
+class RegisterCustomerOptionPanel extends JPanel {
     private final JTextField firstNameField;
     private final JTextField lastNameField;
 
-    RegisterClientOptionPanel() {
+    RegisterCustomerOptionPanel() {
         super(new GridLayout(0, 1));
 
         this.firstNameField = new JTextField();
@@ -24,11 +24,11 @@ class RegisterClientOptionPanel extends JPanel {
         add(this.lastNameField);
     }
 
-    public RegisterClientData prompt() {
+    public RegisterCustomerData prompt() {
         int result = JOptionPane.showConfirmDialog(
                 null,
                 this,
-                "Register new client",
+                "Register new customer",
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.PLAIN_MESSAGE);
 
@@ -40,7 +40,7 @@ class RegisterClientOptionPanel extends JPanel {
                 if (firstName.isBlank() || lastName.isBlank())
                     throw new Exception();
 
-                return new RegisterClientData(firstName, lastName);
+                return new RegisterCustomerData(firstName, lastName);
             } else
                 return null;
         } catch (Exception e) {

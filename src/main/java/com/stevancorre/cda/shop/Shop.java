@@ -15,12 +15,12 @@ import java.util.function.Function;
 public class Shop {
     private final ArrayList<Order> orders;
     private final ArrayList<Product> products;
-    private final ArrayList<Client> clients;
+    private final ArrayList<Customer> customers;
 
     public Shop() {
         orders = new ArrayList<>();
         products = new ArrayList<>();
-        clients = new ArrayList<>();
+        customers = new ArrayList<>();
     }
 
     /**
@@ -31,7 +31,7 @@ public class Shop {
     public Shop(final String productsData, final String ordersData) throws IOException {
         orders = new ArrayList<>();
         products = new ArrayList<>(parseFromFile(productsData, Shop::parseProduct));
-        clients = new ArrayList<>();
+        customers = new ArrayList<>();
     }
 
     private static Product parseProduct(final String source) {
@@ -66,20 +66,20 @@ public class Shop {
     }
 
     /**
-     * Register a new client in the stocks
+     * Register a new custom in the stocks
      */
-    public Client registerClient(final String firstName, final String lastName) {
-        final Client client = new Client(firstName, lastName);
-        clients.add(client);
+    public Customer registerCustomer(final String firstName, final String lastName) {
+        final Customer customer = new Customer(firstName, lastName);
+        customers.add(customer);
 
-        return client;
+        return customer;
     }
 
     /**
      * Make a new order
      */
-    public Order makeOrder(final Client client, final OrderProduct[] products) {
-        final Order order = new Order(client, products);
+    public Order makeOrder(final Customer customer, final OrderProduct[] products) {
+        final Order order = new Order(customer, products);
         orders.add(order);
 
         return order;
@@ -124,7 +124,7 @@ public class Shop {
         return products;
     }
 
-    public ArrayList<Client> getClients() {
-        return clients;
+    public ArrayList<Customer> getCustomers() {
+        return customers;
     }
 }

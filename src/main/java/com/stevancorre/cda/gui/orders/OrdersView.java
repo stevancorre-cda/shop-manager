@@ -64,7 +64,7 @@ public class OrdersView extends JPanel {
                         .stream()
                         .map(this::extractRow)
                         .toArray(Object[][]::new),
-                new String[]{"Status", "Date", "Client", "Products count", "Total price"}
+                new String[]{"Status", "Date", "Customer", "Products count", "Total price"}
         );
 
         final double total = shop.getOrders()
@@ -101,7 +101,7 @@ public class OrdersView extends JPanel {
         return new Object[]{
                 order.getStatus(),
                 order.getFormattedDate(),
-                order.getClient().getFullName(),
+                order.getCustomer().getFullName(),
                 Arrays.stream(order.getProducts()).mapToInt(OrderProduct::getQuantity).sum(),
                 order.getTotalPrice()
         };
@@ -113,7 +113,7 @@ public class OrdersView extends JPanel {
 
         if (data == null) return;
 
-        shop.makeOrder(data.client(), data.products());
+        shop.makeOrder(data.customer(), data.products());
         updateData();
     }
 

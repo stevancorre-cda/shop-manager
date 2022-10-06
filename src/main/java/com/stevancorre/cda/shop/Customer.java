@@ -3,15 +3,15 @@ package com.stevancorre.cda.shop;
 import java.util.UUID;
 
 /**
- * Represents a client in the shop
+ * Represents a customer in the shop
  */
-public class Client {
+public class Customer {
     private final UUID id;
 
     private final String firstName;
     private final String lastName;
 
-    Client(final String firstName, final String lastName) {
+    Customer(final String firstName, final String lastName) {
         this.id = UUID.randomUUID();
 
         this.firstName = firstName;

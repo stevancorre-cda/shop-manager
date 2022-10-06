@@ -1,6 +1,6 @@
-package com.stevancorre.cda.gui.clients;
+package com.stevancorre.cda.gui.customers;
 
-import com.stevancorre.cda.shop.Client;
+import com.stevancorre.cda.shop.Customer;
 import com.stevancorre.cda.shop.Order;
 import com.stevancorre.cda.shop.OrderStatus;
 import com.stevancorre.cda.shop.Shop;
@@ -8,20 +8,17 @@ import com.stevancorre.cda.shop.Shop;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
-public class ClientsView extends JPanel {
+public class CustomersView extends JPanel {
     private final Shop shop;
 
     private final DefaultTableModel model;
     private final JTable table;
 
-    public ClientsView(final Shop shop) {
+    public CustomersView(final Shop shop) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.shop = shop;
@@ -43,7 +40,7 @@ public class ClientsView extends JPanel {
                 setAlignmentX(Component.LEFT_ALIGNMENT);
 
                 add(makeHorizontalSpace());
-                add(makeButton("Register client", b -> b.addActionListener(e -> handleRegisterClient())));
+                add(makeButton("Register customer", b -> b.addActionListener(e -> handleRegisterCustomer())));
             }});
         }};
     }
@@ -59,7 +56,7 @@ public class ClientsView extends JPanel {
     }
 
     public void updateData() {
-        model.setDataVector(shop.getClients()
+        model.setDataVector(shop.getCustomers()
                         .stream()
                         .map(this::extractRow)
                         .toArray(Object[][]::new),
@@ -67,33 +64,33 @@ public class ClientsView extends JPanel {
         );
     }
 
-    private void handleRegisterClient() {
-        final RegisterClientOptionPanel panel = new RegisterClientOptionPanel();
-        final RegisterClientData data = panel.prompt();
+    private void handleRegisterCustomer() {
+        final RegisterCustomerOptionPanel panel = new RegisterCustomerOptionPanel();
+        final RegisterCustomerData data = panel.prompt();
 
         if(data == null) return;
 
-        shop.registerClient(data.firstName(), data.lastName());
+        shop.registerCustomer(data.firstName(), data.lastName());
         updateData();
     }
 
-    private Object[] extractRow(final Client client) {
+    private Object[] extractRow(final Customer customer) {
         if (shop == null) return new Object[0];
 
-        final List<Order> clientOrders = shop.getOrders()
+        final List<Order> customerOrders = shop.getOrders()
                 .stream()
-                .filter(x -> client.equals(x.getClient()))
+                .filter(x -> customer.equals(x.getCustomer()))
                 .toList();
 
-        final long activeOrders = clientOrders
+        final long activeOrders = customerOrders
                 .stream()
                 .filter(x -> x.getStatus() == OrderStatus.Preparing)
                 .count();
-        final long finalizedOrders = clientOrders.size() - activeOrders;
+        final long finalizedOrders = customerOrders.size() - activeOrders;
 
         return new Object[]{
-                client.getFirstName(),
-                client.getLastName(),
+                customer.getFirstName(),
+                customer.getLastName(),
                 activeOrders,
                 finalizedOrders
         };

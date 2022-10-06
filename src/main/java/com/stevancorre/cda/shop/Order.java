@@ -14,15 +14,15 @@ public class Order {
 
     private OrderStatus status;
 
-    private final Client client;
+    private final Customer customer;
     private final OrderProduct[] products;
 
-    Order(final Client client, final OrderProduct[] products) {
+    Order(final Customer customer, final OrderProduct[] products) {
         this.id = UUID.randomUUID();
         this.date = new Date();
         this.status = OrderStatus.Preparing;
 
-        this.client = client;
+        this.customer = customer;
         this.products = products;
     }
 
@@ -79,7 +79,7 @@ public class Order {
         return status;
     }
 
-    public Client getClient() {
-        return client;
+    public Customer getCustomer() {
+        return customer;
     }
 }

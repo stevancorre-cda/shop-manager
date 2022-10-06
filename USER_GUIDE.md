@@ -5,7 +5,7 @@
 - [See all stocks](#see-stocks)
 - [Create new product](#create-product)
 - [See all clients](#see-clients)
-- [Register new client](#register-client)
+- [Register new customer](#register-customer)
 - [See all orders](#see-orders)
 - [See total of finalized orders](#see-total)
 - [Make an order](#make-an-order)
@@ -30,17 +30,17 @@ You can visualize your clients with the second tab. You'll have access to a read
 
 ![](resources/see-clients.png)
 
-## Register client
+## Register customer
 
-You can register a new client by cliking "Register client" in the client tab. You'll see a popup asking you different informations about your new client.  
-When you've done filling the form, just click "Ok" and the client is going to be added to the table and available for taking orders.  
+You can register a new customer by cliking "Register customer" in the customer tab. You'll see a popup asking you different informations about your new customer.  
+When you've done filling the form, just click "Ok" and the customer is going to be added to the table and available for taking orders.  
 You can also click "Cancel" to abort the process  
 
-![](resources/register-client.png)
+![](resources/register-customer.png)
 
 ## See orders
 
-You can visualize your orders with the third tab. You'll have access to a read only sortable table containing all your active and finalized orders. With a column for their status, date, client name, product count and total price  
+You can visualize your orders with the third tab. You'll have access to a read only sortable table containing all your active and finalized orders. With a column for their status, date, customer name, product count and total price  
 
 ![](resources/see-orders.png)
 
@@ -52,7 +52,7 @@ You can see the total price of all finalized order in the top right section of t
 
 ## Make an order
 
-You can make a new order by clicking the "Make order" button. You'll see a popup asking you informations about the order. You can select the client (in green), and add a new product (in yellow)
+You can make a new order by clicking the "Make order" button. You'll see a popup asking you informations about the order. You can select the customer (in green), and add a new product (in yellow)
 
 ![](resources/make-order.png)  
 
