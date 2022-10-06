@@ -30,5 +30,4 @@ public final class OrderProduct {
                 "product=" + product + ", " +
                 "quantity=" + quantity + ']';
     }
-
 }

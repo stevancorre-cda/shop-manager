@@ -12,18 +12,20 @@ import java.util.List;
 
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
+/**
+ * Customers table view
+ */
 public class CustomersView extends JPanel {
     private final Shop shop;
 
     private final DefaultTableModel model;
-    private final JTable table;
 
     public CustomersView(final Shop shop) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.shop = shop;
         this.model = new DefaultTableModel();
-        this.table = makeTable();
+        JTable table = makeTable();
 
         add(makeVerticalSpace());
         add(makeButtonsPanel());
@@ -55,6 +57,9 @@ public class CustomersView extends JPanel {
         }};
     }
 
+    /**
+     * Update table data
+     */
     public void updateData() {
         model.setDataVector(shop.getCustomers()
                         .stream()
@@ -64,6 +69,9 @@ public class CustomersView extends JPanel {
         );
     }
 
+    /**
+     * Open the register customer popup
+     */
     private void handleRegisterCustomer() {
         final RegisterCustomerOptionPanel panel = new RegisterCustomerOptionPanel();
         final RegisterCustomerData data = panel.prompt();
@@ -74,9 +82,13 @@ public class CustomersView extends JPanel {
         updateData();
     }
 
+    /**
+     * Convert customer data to row data
+     */
     private Object[] extractRow(final Customer customer) {
         if (shop == null) return new Object[0];
 
+        // count finalized and active orders
         final List<Order> customerOrders = shop.getOrders()
                 .stream()
                 .filter(x -> customer.equals(x.getCustomer()))
