@@ -18,6 +18,8 @@ You can visualize your stocks with the first tab. You'll have access to a read o
 
 ![](resources/see-stocks.png)
 
+<div style="page-break-after: always"></div>
+
 ## Create product
 
 You can create a new product while being on the first tab. Just hit "New product" and you'll see a popup asking you different informations about your new product.  
@@ -26,11 +28,15 @@ You can also click "Cancel" to abort the process
 
 ![](resources/create-product.png)
 
+<div style="page-break-after: always"></div>
+
 ## See all customers
 
 You can visualize your customers with the second tab. You'll have access to a read only sortable table containing all your customers. With a column for their first and last name, active and finalized orders count  
 
 ![](resources/see-customers.png)
+
+<div style="page-break-after: always"></div>
 
 ## Register customer
 
@@ -40,17 +46,23 @@ You can also click "Cancel" to abort the process
 
 ![](resources/register-customer.png)
 
+<div style="page-break-after: always"></div>
+
 ## See orders
 
 You can visualize your orders with the third tab. You'll have access to a read only sortable table containing all your active and finalized orders. With a column for their status, date, customer name, product count and total price  
 
 ![](resources/see-orders.png)
 
+<div style="page-break-after: always"></div>
+
 ## See total
 
 You can see the total price of all finalized order in the top right section of the interface
 
 ![](resources/see-total.png)
+
+<div style="page-break-after: always"></div>
 
 ## Make an order
 
@@ -62,11 +74,15 @@ If you arent happy with the quantity of the product you just created, you can do
 
 ![](resources/make-order-edit.png)
 
+<div style="page-break-after: always"></div>
+
 ## Edit an order
 
 Once you have your orders, you can edit them with a double click in the table. You'll be able to visualize any order but only edit non-finalized onces.  
 
 ![](resources/edit-order.png)
+
+<div style="page-break-after: always"></div>
 
 ## Ship orders
 
