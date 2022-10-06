@@ -1,29 +1,37 @@
 package com.stevancorre.cda.gui.clients;
 
+import com.stevancorre.cda.shop.Client;
+import com.stevancorre.cda.shop.Order;
+import com.stevancorre.cda.shop.OrderStatus;
 import com.stevancorre.cda.shop.Shop;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
 public class ClientsView extends JPanel {
     private final Shop shop;
-    private final ClientsTablePanel clientsTable;
+
+    private final DefaultTableModel model;
+    private final JTable table;
 
     public ClientsView(final Shop shop) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.shop = shop;
-        this.clientsTable = new ClientsTablePanel(shop);
+        this.model = new DefaultTableModel();
+        this.table = makeTable();
 
         add(makeVerticalSpace());
         add(makeButtonsPanel());
         add(makeVerticalSpace());
-        add(new JPanel() {{
-            setLayout(new BorderLayout());
-            add(clientsTable);
-        }});
+        add(new JScrollPane(table));
     }
 
     private JComponent makeButtonsPanel() {
@@ -40,6 +48,25 @@ public class ClientsView extends JPanel {
         }};
     }
 
+    private JTable makeTable() {
+        return new JTable(model) {{
+            updateData();
+
+            setDefaultEditor(Object.class, null);
+            setAutoCreateRowSorter(true);
+            setFillsViewportHeight(true);
+        }};
+    }
+
+    public void updateData() {
+        model.setDataVector(shop.getClients()
+                        .stream()
+                        .map(this::extractRow)
+                        .toArray(Object[][]::new),
+                new String[]{"First name", "Last name", "Active orders", "Finalized orders"}
+        );
+    }
+
     private void handleRegisterClient() {
         final RegisterClientOptionPanel panel = new RegisterClientOptionPanel();
         final RegisterClientData data = panel.prompt();
@@ -47,6 +74,28 @@ public class ClientsView extends JPanel {
         if(data == null) return;
 
         shop.registerClient(data.firstName(), data.lastName());
-        clientsTable.updateData();
+        updateData();
+    }
+
+    private Object[] extractRow(final Client client) {
+        if (shop == null) return new Object[0];
+
+        final List<Order> clientOrders = shop.getOrders()
+                .stream()
+                .filter(x -> client.equals(x.getClient()))
+                .toList();
+
+        final long activeOrders = clientOrders
+                .stream()
+                .filter(x -> x.getStatus() == OrderStatus.Preparing)
+                .count();
+        final long finalizedOrders = clientOrders.size() - activeOrders;
+
+        return new Object[]{
+                client.getFirstName(),
+                client.getLastName(),
+                activeOrders,
+                finalizedOrders
+        };
     }
 }

@@ -16,12 +16,16 @@ public final class MainView extends JPanel {
         super(new BorderLayout());
 
         final ProductsPanel productsPanel = new ProductsPanel(shop);
+        final ClientsView clientsPanel = new ClientsView(shop);
         add(new JTabbedPane() {{
             addTab("Products", productsPanel);
-            addTab("Clients", new ClientsView(shop));
+            addTab("Clients", clientsPanel);
             addTab("Orders", new OrdersView(shop));
 
-            addChangeListener(e -> productsPanel.updateData());
+            addChangeListener(e -> {
+                productsPanel.updateData();
+                clientsPanel.updateData();
+            });
         }});
     }
 }
