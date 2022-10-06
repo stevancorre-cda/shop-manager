@@ -1,11 +1,11 @@
-Les Miserables de Victor Hugo ;8.50;6
-La Peste de Albert Camus;8.5;4
-Pantalon bleu taille 44 homme;12.0;5
-Pantalon jean femme 48;23.0;4
-T-shirt rose femme 52;30.0;6
-Le P�re Goriot de Honor� de Balzac;11.0;5
-L'�tranger de Albert Camus;11.0;5
-Voyage au bout de la nuit de Louis-ferdinand C�line;11.0;3
-Tintin au Tibet;11.5;2
-Spirou et Fantasio;11.5;2
-Corto Maltese;11.5;0
+8d09636a-50cf-4fde-8c0a-1df5eb09e6e5;Les Miserables de Victor Hugo ;8.50;6
+fd9a620d-6a32-4b80-9720-d516ec42983c;La Peste de Albert Camus;8.5;4
+a226e96a-01cb-4b82-b107-951108d9c765;Pantalon bleu taille 44 homme;12.0;5
+2f116df9-40c1-4c76-a04a-0fa8fd6c830f;Pantalon jean femme 48;23.0;4
+0400ef0c-2f5a-4597-8207-966816857482;T-shirt rose femme 52;30.0;6
+fd5a3449-12e0-434c-b7e2-05f48ea23105;Le P�re Goriot de Honor� de Balzac;11.0;5
+513b81c0-fbd3-49cd-bc25-1e0a683e5aaa;L'�tranger de Albert Camus;11.0;5
+0ea316f2-2d86-4284-aeb4-cbf3a9b5ce27;Voyage au bout de la nuit de Louis-ferdinand C�line;11.0;3
+e8499211-8980-4f4c-b068-3d2fedf797de;Tintin au Tibet;11.5;2
+f68fe758-adf8-49d4-b311-d9f4489c72fa;Spirou et Fantasio;11.5;2
+dea58905-83db-40b4-91a1-7370566bc971;Corto Maltese;11.5;0

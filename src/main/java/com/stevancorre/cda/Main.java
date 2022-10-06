@@ -12,7 +12,10 @@ import static javax.swing.SwingUtilities.invokeLater;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        final Shop shop = new Shop("src/main/resources/products.txt", "");
+        final Shop shop = new Shop(
+                "src/main/resources/products.txt",
+                "src/main/resources/customers.txt",
+                "src/main/resources/orders.txt");
 
         final Product product = shop.createProduct("baguette de pain super cher", 10, 10);
         final Product product2 = shop.createProduct("eau de fou", 10, 50);

@@ -13,12 +13,17 @@ public final class Product {
 
     private int quantity;
 
-    Product(final String name, final double price, final int quantity) {
-        this.id = UUID.randomUUID();
+    Product(final UUID uuid, final String name, final double price, final int quantity) {
+        this.id = uuid;
 
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+    }
+
+
+    Product(final String name, final double price, final int quantity) {
+        this(UUID.randomUUID(), name, price, quantity);
     }
 
     public UUID getId() {

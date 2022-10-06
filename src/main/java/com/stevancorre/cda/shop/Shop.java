@@ -5,8 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 
 /**
@@ -28,18 +27,59 @@ public class Shop {
      *
      * @throws IOException Thrown when file is not found or it's impossible reading it
      */
-    public Shop(final String productsData, final String ordersData) throws IOException {
-        orders = new ArrayList<>();
-        products = new ArrayList<>(parseFromFile(productsData, Shop::parseProduct));
-        customers = new ArrayList<>();
+    public Shop(
+            final String productsData,
+            final String customersData,
+            final String ordersData) throws IOException {
+        products = new ArrayList<>(parseFromFile(productsData, this::parseProduct));
+        customers = new ArrayList<>(parseFromFile(customersData, this::parseCustomer));
+        orders = new ArrayList<>(parseFromFile(ordersData, this::parseOrder));
     }
 
-    private static Product parseProduct(final String source) {
+    private Product parseProduct(final String source) {
         final String[] parts = source.split(";");
         return new Product(
-                parts[0],
-                Double.parseDouble(parts[1]),
-                Integer.parseInt(parts[2]));
+                UUID.fromString(parts[0]),
+                parts[1],
+                Double.parseDouble(parts[2]),
+                Integer.parseInt(parts[3]));
+    }
+
+    private Customer parseCustomer(final String source) {
+        final String[] parts = source.split(";");
+        return new Customer(
+                UUID.fromString(parts[0]),
+                parts[1],
+                parts[2]);
+    }
+
+    private Order parseOrder(final String source) {
+        final String[] parts = source.split(";");
+        final UUID customerId = UUID.fromString(parts[2]);
+        return new Order(
+                UUID.fromString(parts[0]),
+                new Date(),
+                customers
+                        .stream()
+                        .filter(x -> x.getId().equals(customerId))
+                        .findFirst()
+                        .orElse(null),
+                Arrays.stream(parts[3].split(","))
+                        .map(this::parseOrderProduct)
+                        .toArray(OrderProduct[]::new));
+    }
+
+    private OrderProduct parseOrderProduct(final String source) {
+        final String[] parts = source.split("=");
+        final UUID productId = UUID.fromString(parts[0]);
+        return new OrderProduct(
+                products
+                        .stream()
+                        .filter(x -> x.getId().equals(productId))
+                        .findFirst()
+                        .orElse(null),
+                Integer.parseInt(parts[1])
+        );
     }
 
     private static <E> List<E> parseFromFile(final String source, final Function<String, E> parser) throws IOException {

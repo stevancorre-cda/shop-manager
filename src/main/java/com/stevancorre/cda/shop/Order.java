@@ -17,13 +17,17 @@ public class Order {
     private final Customer customer;
     private final OrderProduct[] products;
 
-    Order(final Customer customer, final OrderProduct[] products) {
-        this.id = UUID.randomUUID();
-        this.date = new Date();
+    Order(final UUID id, final Date date, final Customer customer, final OrderProduct[] products) {
+        this.id = id;
+        this.date = date;
         this.status = OrderStatus.Preparing;
 
         this.customer = customer;
         this.products = products;
+    }
+
+    Order(final Customer customer, final OrderProduct[] products) {
+        this(UUID.randomUUID(), new Date(), customer, products);
     }
 
     /**

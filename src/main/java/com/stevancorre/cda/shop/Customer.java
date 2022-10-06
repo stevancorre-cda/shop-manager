@@ -11,11 +11,15 @@ public class Customer {
     private final String firstName;
     private final String lastName;
 
-    Customer(final String firstName, final String lastName) {
-        this.id = UUID.randomUUID();
+    Customer(final UUID uuid, final String firstName, final String lastName) {
+        this.id = uuid;
 
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    Customer(final String firstName, final String lastName) {
+        this(UUID.randomUUID(), firstName, lastName);
     }
 
     public UUID getId() {
