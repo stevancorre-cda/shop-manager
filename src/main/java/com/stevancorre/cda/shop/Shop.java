@@ -47,7 +47,7 @@ public class Shop {
     }
 
     public Product createProduct(final String name, final double price, final int quantity) throws NegativeQuantityException {
-        if(quantity < 0)
+        if (quantity < 0)
             throw new NegativeQuantityException(name);
 
         final Product product = new Product(name, price, quantity);
@@ -72,6 +72,33 @@ public class Shop {
         }
 
         return order;
+    }
+
+    public String tryShip(final Order order) {
+        if(order.getStatus() == OrderStatus.Finalized) return null;
+
+        final StringBuilder errors = new StringBuilder();
+
+        for (final OrderProduct entry : order.getProducts()) {
+            final Product product = entry.getProduct();
+            if (product.getAvailableQuantity() <= entry.getQuantity())
+                errors
+                        .append("Missing ")
+                        .append(entry.getQuantity() - product.getAvailableQuantity())
+                        .append(" ")
+                        .append(product.getName())
+                        .append('\n');
+        }
+
+        if (errors.isEmpty()) {
+            for (final OrderProduct entry : order.getProducts()) {
+                entry.getProduct().getFromStocks(entry.getQuantity());
+            }
+
+            order.updateStatus();
+            return null;
+        }
+        return errors.toString();
     }
 
     public ArrayList<Order> getOrders() {

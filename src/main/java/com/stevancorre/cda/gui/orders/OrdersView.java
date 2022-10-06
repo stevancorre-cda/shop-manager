@@ -31,10 +31,6 @@ public class OrdersView extends JPanel {
         add(makeVerticalSpace());
         add(makeToolbarPanel());
         add(makeVerticalSpace());
-        // add(new JPanel() {{
-        //     setLayout(new BorderLayout());
-        //     add(ordersTable);
-        // }});
 
         this.model = new DefaultTableModel();
         this.table = makeTable();
@@ -51,6 +47,8 @@ public class OrdersView extends JPanel {
 
                 add(makeHorizontalSpace());
                 add(makeButton("Make order", b -> b.addActionListener(e -> handleMakeOrder())));
+                add(makeHorizontalSpace());
+                add(makeButton("Ship orders", b -> b.addActionListener(e -> handleShipOrders())));
                 add(makeHorizontalSpace());
 
                 add(Box.createHorizontalGlue());
@@ -118,6 +116,15 @@ public class OrdersView extends JPanel {
     private void handleEditorOrder(final Order order) {
         final EditOrderOptionPanel panel = new EditOrderOptionPanel(order);
         panel.prompt();
+        updateData();
+    }
+
+    private void handleShipOrders() {
+        for (final Order order : shop.getOrders()) {
+            final String errors = shop.tryShip(order);
+            System.out.println(errors);
+        }
+
         updateData();
     }
 }
