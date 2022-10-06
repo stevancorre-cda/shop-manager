@@ -4,7 +4,7 @@ import com.stevancorre.cda.shop.OrderProduct;
 import com.stevancorre.cda.shop.Product;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.util.List;
 
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
@@ -12,7 +12,7 @@ class AddOrderProductOptionPanel extends JPanel {
     private final JComboBox<Product> productField;
     private final JTextField quantityField;
 
-    AddOrderProductOptionPanel(final ArrayList<Product> products) {
+    AddOrderProductOptionPanel(final List<Product> products) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentX(LEFT_ALIGNMENT);
 

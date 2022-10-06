@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.stevancorre.cda.gui.GUIUtils.makeButton;
 import static com.stevancorre.cda.gui.GUIUtils.makeLabel;
@@ -62,10 +63,10 @@ class OrderProductsList extends JPanel {
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(final MouseEvent event) {
-                    if(event.getClickCount() != 2) return;
+                    if (event.getClickCount() != 2) return;
 
                     final int index = table.rowAtPoint(event.getPoint());
-                    if(index == -1) return;
+                    if (index == -1) return;
 
                     handleEditOrderProduct(entries.get(index));
                 }
@@ -83,7 +84,15 @@ class OrderProductsList extends JPanel {
     }
 
     private void handleAddOrderProduct() {
-        final AddOrderProductOptionPanel panel = new AddOrderProductOptionPanel(products);
+        // allow to add only products that aren't already in the order
+        final List<Product> availableProducts = products
+                .stream()
+                .filter(x -> entries
+                        .stream()
+                        .noneMatch(y -> x.equals(y.getProduct())))
+                .toList();
+
+        final AddOrderProductOptionPanel panel = new AddOrderProductOptionPanel(availableProducts);
         final OrderProduct data = panel.prompt();
 
         if (data == null) return;
@@ -96,7 +105,7 @@ class OrderProductsList extends JPanel {
         final EditOrderProductOptionPanel panel = new EditOrderProductOptionPanel(entry);
         final Integer data = panel.prompt();
 
-        if(data == null) return;
+        if (data == null) return;
 
         entry.setQuantity(data);
         updateData();
