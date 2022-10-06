@@ -2,7 +2,7 @@ package com.stevancorre.cda.gui;
 
 import com.stevancorre.cda.gui.customers.CustomersView;
 import com.stevancorre.cda.gui.orders.OrdersView;
-import com.stevancorre.cda.gui.products.ProductsPanel;
+import com.stevancorre.cda.gui.products.ProductsView;
 import com.stevancorre.cda.shop.Shop;
 
 import javax.swing.*;
@@ -15,15 +15,15 @@ public final class MainView extends JPanel {
     public MainView(final Shop shop) {
         super(new BorderLayout());
 
-        final ProductsPanel productsPanel = new ProductsPanel(shop);
+        final ProductsView productsView = new ProductsView(shop);
         final CustomersView customersView = new CustomersView(shop);
         add(new JTabbedPane() {{
-            addTab("Products", productsPanel);
-            addTab("Clients", customersView);
+            addTab("Products", productsView);
+            addTab("Customers", customersView);
             addTab("Orders", new OrdersView(shop));
 
             addChangeListener(e -> {
-                productsPanel.updateData();
+                productsView.updateData();
                 customersView.updateData();
             });
         }});
