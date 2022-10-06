@@ -82,10 +82,6 @@ public class Shop {
         final Order order = new Order(client, products);
         orders.add(order);
 
-        for (final OrderProduct orderProduct : products) {
-            orderProduct.getProduct().getFromStocks(orderProduct.getQuantity());
-        }
-
         return order;
     }
 
@@ -94,22 +90,17 @@ public class Shop {
      *
      * @return If there was no error, null. Otherwise a string containing them
      */
-    public String tryShip(final Order order) {
-        if(order.getStatus() == OrderStatus.Finalized) return null;
+    public OrderErrors tryShip(final Order order) {
+        if (order.getStatus() == OrderStatus.Finalized) return null;
 
-        final StringBuilder errors = new StringBuilder();
+        final ArrayList<ShipError> errors = new ArrayList<>();
 
         // loop through all entries and check if there are enough products in stocks
-        // if no, add the error to the string builder
+        // if no, add the error to the errors list
         for (final OrderProduct entry : order.getProducts()) {
             final Product product = entry.getProduct();
-            if (product.getAvailableQuantity() <= entry.getQuantity())
-                errors
-                        .append("Missing ")
-                        .append(entry.getQuantity() - product.getAvailableQuantity())
-                        .append(" ")
-                        .append(product.getName())
-                        .append('\n');
+            if (entry.getQuantity() > product.getAvailableQuantity())
+                errors.add(new ShipError(product, entry.getQuantity() - product.getAvailableQuantity()));
         }
 
         // if there was no error, remove the products from stocks then update the order status
@@ -121,7 +112,8 @@ public class Shop {
             order.updateStatus();
             return null;
         }
-        return errors.toString();
+
+        return new OrderErrors(order, errors);
     }
 
     public ArrayList<Order> getOrders() {
