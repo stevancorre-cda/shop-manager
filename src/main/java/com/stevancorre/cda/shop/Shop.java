@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * Represents the shop
+ */
 public class Shop {
     private final ArrayList<Order> orders;
     private final ArrayList<Product> products;
@@ -20,9 +23,12 @@ public class Shop {
         clients = new ArrayList<>();
     }
 
+    /**
+     * Create shop with data from file
+     *
+     * @throws IOException Thrown when file is not found or it's impossible reading it
+     */
     public Shop(final String productsData, final String ordersData) throws IOException {
-        // TODO: load ordersData
-
         orders = new ArrayList<>();
         products = new ArrayList<>(parseFromFile(productsData, Shop::parseProduct));
         clients = new ArrayList<>();
@@ -46,6 +52,9 @@ public class Shop {
                 .toList();
     }
 
+    /**
+     * Create a new product in the shop
+     */
     public Product createProduct(final String name, final double price, final int quantity) throws NegativeQuantityException {
         if (quantity < 0)
             throw new NegativeQuantityException(name);
@@ -56,6 +65,9 @@ public class Shop {
         return product;
     }
 
+    /**
+     * Register a new client in the stocks
+     */
     public Client registerClient(final String firstName, final String lastName) {
         final Client client = new Client(firstName, lastName);
         clients.add(client);
@@ -63,6 +75,9 @@ public class Shop {
         return client;
     }
 
+    /**
+     * Make a new order
+     */
     public Order makeOrder(final Client client, final OrderProduct[] products) {
         final Order order = new Order(client, products);
         orders.add(order);
@@ -74,11 +89,18 @@ public class Shop {
         return order;
     }
 
+    /**
+     * Try to ship a specific order
+     *
+     * @return If there was no error, null. Otherwise a string containing them
+     */
     public String tryShip(final Order order) {
         if(order.getStatus() == OrderStatus.Finalized) return null;
 
         final StringBuilder errors = new StringBuilder();
 
+        // loop through all entries and check if there are enough products in stocks
+        // if no, add the error to the string builder
         for (final OrderProduct entry : order.getProducts()) {
             final Product product = entry.getProduct();
             if (product.getAvailableQuantity() <= entry.getQuantity())
@@ -90,6 +112,7 @@ public class Shop {
                         .append('\n');
         }
 
+        // if there was no error, remove the products from stocks then update the order status
         if (errors.isEmpty()) {
             for (final OrderProduct entry : order.getProducts()) {
                 entry.getProduct().getFromStocks(entry.getQuantity());

@@ -8,8 +8,9 @@ import com.stevancorre.cda.shop.Shop;
 import javax.swing.*;
 import java.awt.*;
 
-import static com.stevancorre.cda.gui.GUIUtils.makeTextPanel;
-
+/**
+ * Describe the main view (with the three panels)
+ */
 public final class MainView extends JPanel {
     public MainView(final Shop shop) {
         super(new BorderLayout());

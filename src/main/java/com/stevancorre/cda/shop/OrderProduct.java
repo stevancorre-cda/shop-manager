@@ -1,5 +1,8 @@
 package com.stevancorre.cda.shop;
 
+/**
+ * Represents a product in an order, associating a product with a quantity
+ */
 public final class OrderProduct {
     private final Product product;
     private int quantity;

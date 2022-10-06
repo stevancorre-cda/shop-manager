@@ -2,11 +2,14 @@ package com.stevancorre.cda.shop;
 
 import java.util.UUID;
 
+/**
+ * Represents a client in the shop
+ */
 public class Client {
     private final UUID id;
 
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
 
     Client(final String firstName, final String lastName) {
         this.id = UUID.randomUUID();

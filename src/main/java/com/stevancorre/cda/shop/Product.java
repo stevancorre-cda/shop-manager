@@ -2,6 +2,9 @@ package com.stevancorre.cda.shop;
 
 import java.util.UUID;
 
+/**
+ * Represents a product in stocks
+ */
 public final class Product {
     private final UUID id;
 
@@ -34,14 +37,23 @@ public final class Product {
         return quantity;
     }
 
+    /**
+     * Remove `count` products from its stock
+     */
     public void getFromStocks(final int count) {
         quantity -= count;
     }
 
+    /**
+     * Add `count` products to its stock
+     */
     public void addToStocks(final int count) {
         quantity += count;
     }
 
+    /**
+     * Formatted string like `product name -- price`
+     */
     @Override
     public String toString() {
         return String.format("%s --- %.2f€", name, price);
