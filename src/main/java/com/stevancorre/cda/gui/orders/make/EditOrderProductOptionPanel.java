@@ -5,8 +5,7 @@ import com.stevancorre.cda.shop.Product;
 
 import javax.swing.*;
 
-import static com.stevancorre.cda.gui.GUIUtils.makeLabel;
-import static com.stevancorre.cda.gui.GUIUtils.showError;
+import static com.stevancorre.cda.gui.GUIUtils.*;
 
 class EditOrderProductOptionPanel extends JPanel {
     private final JTextField quantityField;
@@ -21,9 +20,8 @@ class EditOrderProductOptionPanel extends JPanel {
         final JTextField productField = new JTextField(entry.getProduct().toString()) {{
             setEnabled(false);
         }};
-        quantityField = new JTextField() {{
-            setText(String.valueOf(entry.getQuantity()));
-        }};
+        quantityField = makeIntTextField();
+        quantityField.setText(String.valueOf(entry.getQuantity()));
 
         add(makeLabel("Product", l -> l.setLabelFor(productField)));
         add(productField);

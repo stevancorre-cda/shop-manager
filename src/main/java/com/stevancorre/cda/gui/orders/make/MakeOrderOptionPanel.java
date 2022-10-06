@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.util.Vector;
 
 import static com.stevancorre.cda.gui.GUIUtils.makeLabel;
+import static com.stevancorre.cda.gui.GUIUtils.showError;
 
 public class MakeOrderOptionPanel extends JPanel {
     private final JComboBox<Client> clientField;
@@ -32,12 +33,21 @@ public class MakeOrderOptionPanel extends JPanel {
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.PLAIN_MESSAGE);
 
-        if (result == JOptionPane.OK_OPTION)
-            return new MakeOrderData(
-                    (Client) this.clientField.getSelectedItem(),
-                    this.productsList.getProducts());
-        else
-            return null;
+        try {
+            if (result == JOptionPane.OK_OPTION) {
+                if (this.productsList.getProducts().length == 0)
+                    throw new Exception();
+
+                return new MakeOrderData(
+                        (Client) this.clientField.getSelectedItem(),
+                        this.productsList.getProducts());
+            } else
+                return null;
+        } catch (final Exception e) {
+            showError("Invalid input");
+
+            return prompt();
+        }
     }
 }
 

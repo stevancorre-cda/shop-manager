@@ -17,7 +17,7 @@ class AddOrderProductOptionPanel extends JPanel {
         setAlignmentX(LEFT_ALIGNMENT);
 
         productField = new JComboBox<>(products.toArray(new Product[0]));
-        quantityField = new JTextField();
+        quantityField = makeIntTextField();
 
         add(makeLabel("Product", l -> l.setLabelFor(productField)));
         add(productField);
@@ -35,14 +35,18 @@ class AddOrderProductOptionPanel extends JPanel {
                 JOptionPane.PLAIN_MESSAGE);
 
         try {
-            if (result == JOptionPane.OK_OPTION)
-                return new OrderProduct(
-                        (Product) this.productField.getSelectedItem(),
-                        Integer.parseInt(this.quantityField.getText()));
-            else
+            if (result == JOptionPane.OK_OPTION) {
+                final Product product = (Product) this.productField.getSelectedItem();
+                final int quantity = Integer.parseInt(this.quantityField.getText());
+
+                if (product == null)
+                    throw new Exception();
+
+                return new OrderProduct(product, quantity);
+            } else
                 return null;
-        } catch (NumberFormatException e) {
-            showError("Invalid number format");
+        } catch (Exception e) {
+            showError("Invalid input");
 
             return prompt();
         }
