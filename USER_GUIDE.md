@@ -9,6 +9,8 @@
 - [See all orders](#see-orders)
 - [See total of finalized orders](#see-total)
 - [Make an order](#make-an-order)
+- [Edit an order](#edit-an-order)
+- [Ship orders](#ship-orders)
 
 ## See stocks
 
