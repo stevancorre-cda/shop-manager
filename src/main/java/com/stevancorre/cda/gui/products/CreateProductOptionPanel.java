@@ -1,9 +1,7 @@
 package com.stevancorre.cda.gui.products;
 
 import javax.swing.*;
-import javax.swing.text.NumberFormatter;
 import java.awt.*;
-import java.text.NumberFormat;
 
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
@@ -38,23 +36,23 @@ class CreateProductOptionPanel extends JPanel {
                 JOptionPane.PLAIN_MESSAGE);
 
         try {
-            final String name = this.nameField.getText();
-            final double price = Double.parseDouble(this.priceField.getText());
-            final int quantity = Integer.parseInt(this.quantityField.getText());
+            if (result == JOptionPane.OK_OPTION) {
 
-            if(name.isBlank())
-                throw new Exception();
+                final String name = this.nameField.getText();
+                final double price = Double.parseDouble(this.priceField.getText());
+                final int quantity = Integer.parseInt(this.quantityField.getText());
 
-            if (result == JOptionPane.OK_OPTION)
+                if (name.isBlank())
+                    throw new Exception();
+                
                 return new CreateProductData(
                         name,
                         price,
                         quantity
                 );
-            else
+            } else
                 return null;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             showError("Invalid input");
 
             return prompt();
