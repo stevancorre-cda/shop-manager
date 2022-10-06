@@ -68,7 +68,7 @@ public class Shop {
         orders.add(order);
 
         for (final OrderProduct orderProduct : products) {
-            orderProduct.product().getFromStocks(orderProduct.quantity());
+            orderProduct.getProduct().getFromStocks(orderProduct.getQuantity());
         }
 
         return order;

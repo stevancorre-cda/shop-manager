@@ -38,14 +38,14 @@ public class Order {
 
     public int getProductsCount() {
         return Arrays.stream(this.getProducts())
-                .toList().stream().mapToInt(OrderProduct::quantity)
+                .toList().stream().mapToInt(OrderProduct::getQuantity)
                 .sum();
     }
 
     public double getTotalPrice() {
         return Arrays
                 .stream(products)
-                .mapToDouble(x -> x.product().getPrice() * x.quantity())
+                .mapToDouble(x -> x.getProduct().getPrice() * x.getQuantity())
                 .sum();
     }
 
