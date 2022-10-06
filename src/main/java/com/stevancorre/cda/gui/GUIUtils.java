@@ -6,6 +6,7 @@ import java.awt.*;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.function.Consumer;
 
 /**
@@ -93,12 +94,25 @@ public final class GUIUtils {
      */
     public static JFormattedTextField makeIntTextField() {
         final NumberFormat format = NumberFormat.getInstance();
-        final NumberFormatter formatter = new NumberFormatter(format);
-        formatter.setValueClass(Integer.class);
-        formatter.setMinimum(0);
-        formatter.setMaximum(Integer.MAX_VALUE);
-        formatter.setAllowsInvalid(false);
-        formatter.setCommitsOnValidEdit(true);
+        format.setGroupingUsed(false);
+
+        final NumberFormatter formatter = new NumberFormatter(format) {
+            @Override
+            public Object stringToValue(String text) throws ParseException {
+                if (text.length() == 0)
+                    return null;
+
+                return super.stringToValue(text);
+            }
+
+            {
+                setValueClass(Integer.class);
+                setMinimum(0);
+                setMaximum(Integer.MAX_VALUE);
+                setAllowsInvalid(false);
+                setCommitsOnValidEdit(true);
+            }
+        };
 
         return new JFormattedTextField(formatter);
     }
