@@ -9,11 +9,11 @@ import java.awt.*;
 
 import static com.stevancorre.cda.gui.GUIUtils.makeButton;
 
-public class ProductsPanel extends JPanel {
+public class ProductsView extends JPanel {
     private final Shop shop;
     private final DefaultTableModel model;
 
-    public ProductsPanel(final Shop shop) {
+    public ProductsView(final Shop shop) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.shop = shop;
