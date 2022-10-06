@@ -5,6 +5,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Function;
 
@@ -56,9 +58,10 @@ public class Shop {
     private Order parseOrder(final String source) {
         final String[] parts = source.split(";");
         final UUID customerId = UUID.fromString(parts[2]);
+
         return new Order(
                 UUID.fromString(parts[0]),
-                new Date(),
+                safeParseDate(parts[1]),
                 customers
                         .stream()
                         .filter(x -> x.getId().equals(customerId))
@@ -80,6 +83,19 @@ public class Shop {
                         .orElse(null),
                 Integer.parseInt(parts[1])
         );
+    }
+
+    private static Date safeParseDate(final String source) {
+        try {
+            final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+
+            return format.parse(source);
+        } catch (final ParseException e) {
+            System.err.println("Invalid date format: " + source);
+            System.exit(1);
+
+            return null;
+        }
     }
 
     private static <E> List<E> parseFromFile(final String source, final Function<String, E> parser) throws IOException {
