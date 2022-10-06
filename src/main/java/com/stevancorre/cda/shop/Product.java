@@ -13,6 +13,14 @@ public final class Product {
 
     private int quantity;
 
+    /**
+     * Initializes a new product
+     *
+     * @param uuid The UUID
+     * @param name The product name
+     * @param price The price per unit
+     * @param quantity The quantity in stocks
+     */
     Product(final UUID uuid, final String name, final double price, final int quantity) {
         this.id = uuid;
 
@@ -21,22 +29,41 @@ public final class Product {
         this.quantity = quantity;
     }
 
+    /**
+     * Initialize a new product with a random UUID
+     *
+     * @param name The product name
+     * @param price The price per unit
+     * @param quantity The quantity in stocks
+     */
     Product(final String name, final double price, final int quantity) {
         this(UUID.randomUUID(), name, price, quantity);
     }
 
+    /**
+     * Get the product id
+     */
     public UUID getId() {
         return id;
     }
 
+    /**
+     * Get the product name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Get the product price per unit
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     * Get the available quantity for this product
+     */
     public int getAvailableQuantity() {
         return quantity;
     }

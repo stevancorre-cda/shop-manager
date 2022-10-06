@@ -172,14 +172,23 @@ public class Shop {
         return new OrderErrors(order, errors);
     }
 
+    /**
+     * Get all registered orders
+     */
     public ArrayList<Order> getOrders() {
         return orders;
     }
 
+    /**
+     * Get all registered products
+     */
     public ArrayList<Product> getProducts() {
         return products;
     }
 
+    /**
+     * Get all registered customers
+     */
     public ArrayList<Customer> getCustomers() {
         return customers;
     }

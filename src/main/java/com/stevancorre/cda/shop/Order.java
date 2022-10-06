@@ -17,6 +17,14 @@ public class Order {
     private final Customer customer;
     private final OrderProduct[] products;
 
+    /**
+     * Initialize a new order
+     *
+     * @param id The UUID
+     * @param date The date
+     * @param customer The customer
+     * @param products Array of products associated with quantities
+     */
     Order(final UUID id, final Date date, final Customer customer, final OrderProduct[] products) {
         this.id = id;
         this.date = date;
@@ -26,6 +34,12 @@ public class Order {
         this.products = products;
     }
 
+    /**
+     * Initialize a new order with default UUID and date
+     *
+     * @param customer The customer
+     * @param products Array of products associated with quantities
+     */
     Order(final Customer customer, final OrderProduct[] products) {
         this(UUID.randomUUID(), new Date(), customer, products);
     }
@@ -40,6 +54,9 @@ public class Order {
         };
     }
 
+    /**
+     * Get list of products in the order
+     */
     public OrderProduct[] getProducts() {
         return products;
     }
@@ -79,10 +96,16 @@ public class Order {
         return format.format(getDate());
     }
 
+    /**
+     * Get the current order status
+     */
     public OrderStatus getStatus() {
         return status;
     }
 
+    /**
+     * Get the customer who made the orderx
+     */
     public Customer getCustomer() {
         return customer;
     }
