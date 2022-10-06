@@ -51,7 +51,7 @@ public class ProductsPanel extends JPanel {
         return new JScrollPane(table);
     }
 
-    private void updateData() {
+    public void updateData() {
         model.setDataVector(
                 shop.getProducts()
                         .stream()
