@@ -3,16 +3,16 @@ package com.stevancorre.cda.gui.orders;
 import com.stevancorre.cda.gui.orders.edit.EditOrderOptionPanel;
 import com.stevancorre.cda.gui.orders.make.MakeOrderData;
 import com.stevancorre.cda.gui.orders.make.MakeOrderOptionPanel;
-import com.stevancorre.cda.shop.Order;
-import com.stevancorre.cda.shop.OrderProduct;
-import com.stevancorre.cda.shop.OrderStatus;
-import com.stevancorre.cda.shop.Shop;
+import com.stevancorre.cda.gui.orders.ship.ShipErrorsOptionPanel;
+import com.stevancorre.cda.gui.orders.ship.ShipSuccessOptionPanel;
+import com.stevancorre.cda.shop.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static com.stevancorre.cda.gui.GUIUtils.*;
@@ -120,10 +120,24 @@ public class OrdersView extends JPanel {
     }
 
     private void handleShipOrders() {
+        final ArrayList<OrderErrors> errors = new ArrayList<>();
+
+        int successes = 0;
+        double total = 0;
         for (final Order order : shop.getOrders()) {
-            final String errors = shop.tryShip(order);
-            System.out.println(errors);
+            final OrderErrors error = shop.tryShip(order);
+            if (error != null)
+                errors.add(error);
+            else {
+                successes++;
+                total += order.getTotalPrice();
+            }
         }
+
+        if (errors.isEmpty())
+            new ShipSuccessOptionPanel(successes, total).prompt();
+        else
+            new ShipErrorsOptionPanel(successes, total, errors).prompt();
 
         updateData();
     }
