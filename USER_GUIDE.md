@@ -4,7 +4,7 @@
 
 - [See all stocks](#see-stocks)
 - [Create new product](#create-product)
-- [See all clients](#see-clients)
+- [See all customers](#see-customers)
 - [Register new customer](#register-customer)
 - [See all orders](#see-orders)
 - [See total of finalized orders](#see-total)
@@ -24,11 +24,11 @@ You can also click "Cancel" to abort the process
 
 ![](resources/create-product.png)
 
-## See all clients
+## See all customers
 
-You can visualize your clients with the second tab. You'll have access to a read only sortable table containing all your clients. With a column for their first and last name, active and finalized orders count  
+You can visualize your customers with the second tab. You'll have access to a read only sortable table containing all your customers. With a column for their first and last name, active and finalized orders count  
 
-![](resources/see-clients.png)
+![](resources/see-customers.png)
 
 ## Register customer
 
@@ -72,4 +72,14 @@ When you've done making your orders, you can ship them by clicking on the "Ship 
 
 ![](resources/ship-orders.png)
 
-It's going to try to ship all orders. If for an order there aren't enough stocks, it's going to be printed in the console (we don't have an interface for that *yet*)
+It's going to try to ship all orders. If you have enough stocks for all orders in preparing state, you'll have a popup give the total price of shipped orders.
+
+![](resources/ship-order-success.png)  
+
+On the other hand, if you don't have enough stocks, you'll have a list of commands with errors:  
+
+![](resources/ship-order-fail.png)  
+
+You can then double click on any row to get more detailled informations:  
+
+![](resources/ship-order-fail-details.png)  
