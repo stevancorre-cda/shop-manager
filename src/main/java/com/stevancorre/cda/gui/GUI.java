@@ -5,6 +5,9 @@ import com.stevancorre.cda.shop.Shop;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Main window
+ */
 public class GUI extends JFrame {
     public GUI(final String title, final Shop shop) {
         super(title);
@@ -16,6 +19,9 @@ public class GUI extends JFrame {
         add(new MainView(shop));
     }
 
+    /**
+     * Display the window
+     */
     public void open() {
         setVisible(true);
     }

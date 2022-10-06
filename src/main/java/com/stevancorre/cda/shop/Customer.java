@@ -34,8 +34,13 @@ public class Customer {
         return lastName;
     }
 
+    /**
+     * FirstName LASTNAME
+     */
     public String getFullName() {
-        return String.format("%s %S", getFirstName(), getLastName());
+        return String.format("%s %S",
+                getFirstName().substring(0, 1).toUpperCase() + getFirstName().substring(1),
+                getLastName());
     }
 
     @Override

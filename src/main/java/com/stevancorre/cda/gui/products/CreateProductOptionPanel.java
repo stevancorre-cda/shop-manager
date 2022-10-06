@@ -5,6 +5,9 @@ import java.awt.*;
 
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
+/**
+ * Popup form to create a new product
+ */
 class CreateProductOptionPanel extends JPanel {
     private final JTextField nameField;
     private final JTextField priceField;
@@ -27,6 +30,11 @@ class CreateProductOptionPanel extends JPanel {
         add(this.quantityField);
     }
 
+    /**
+     * Open the form
+     *
+     * @return Validated product data
+     */
     public CreateProductData prompt() {
         int result = JOptionPane.showConfirmDialog(
                 null,

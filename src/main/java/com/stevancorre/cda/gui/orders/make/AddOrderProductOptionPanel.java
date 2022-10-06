@@ -8,6 +8,9 @@ import java.util.List;
 
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
+/**
+ * Popup form to create an order product (= order entry)
+ */
 class AddOrderProductOptionPanel extends JPanel {
     private final JComboBox<Product> productField;
     private final JTextField quantityField;

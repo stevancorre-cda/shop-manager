@@ -13,7 +13,7 @@ import java.util.List;
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
 /**
- * Customers table view
+ * Customers view (table with register customer button)
  */
 public class CustomersView extends JPanel {
     private final Shop shop;

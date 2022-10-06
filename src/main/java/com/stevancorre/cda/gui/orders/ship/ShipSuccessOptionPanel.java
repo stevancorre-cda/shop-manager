@@ -2,6 +2,9 @@ package com.stevancorre.cda.gui.orders.ship;
 
 import javax.swing.*;
 
+/**
+ * Popup thrown when you have enough stocks to ship your orders. Display stats about the shipping
+ */
 public class ShipSuccessOptionPanel extends JPanel {
     private final String title;
     private final String message;

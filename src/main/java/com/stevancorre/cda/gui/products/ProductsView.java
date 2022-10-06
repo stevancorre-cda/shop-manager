@@ -9,6 +9,9 @@ import java.awt.*;
 
 import static com.stevancorre.cda.gui.GUIUtils.makeButton;
 
+/**
+ * Products view (table and create product button)
+ */
 public class ProductsView extends JPanel {
     private final Shop shop;
     private final DefaultTableModel model;
@@ -51,6 +54,9 @@ public class ProductsView extends JPanel {
         return new JScrollPane(table);
     }
 
+    /**
+     * Update table data
+     */
     public void updateData() {
         model.setDataVector(
                 shop.getProducts()

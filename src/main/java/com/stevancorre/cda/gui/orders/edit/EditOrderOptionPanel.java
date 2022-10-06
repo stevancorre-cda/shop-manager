@@ -7,6 +7,9 @@ import javax.swing.*;
 
 import static com.stevancorre.cda.gui.GUIUtils.makeLabel;
 
+/**
+ * Popup form to edit an order
+ */
 public class EditOrderOptionPanel extends JPanel {
     public EditOrderOptionPanel(final Order order) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -20,7 +23,7 @@ public class EditOrderOptionPanel extends JPanel {
             setText(order.getCustomer().getFullName());
             setEnabled(false);
         }};
-        final OrderProductsList productsList = new OrderProductsList(order.getProducts(), order.getStatus() == OrderStatus.Finalized);
+        final OrderProductsTable productsList = new OrderProductsTable(order.getProducts(), order.getStatus() == OrderStatus.Finalized);
 
         add(makeLabel("Date", l -> l.setLabelFor(dateField)));
         add(dateField);
@@ -29,6 +32,9 @@ public class EditOrderOptionPanel extends JPanel {
         add(productsList);
     }
 
+    /**
+     * Open the form
+     */
     public void prompt() {
         JOptionPane.showConfirmDialog(
                 null,

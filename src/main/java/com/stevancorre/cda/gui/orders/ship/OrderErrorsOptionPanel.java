@@ -4,6 +4,9 @@ import com.stevancorre.cda.shop.OrderErrors;
 
 import javax.swing.*;
 
+/**
+ * Read only errors display for a single order
+ */
 public class OrderErrorsOptionPanel extends JPanel {
     public OrderErrorsOptionPanel(final OrderErrors errors) {
         add(new JScrollPane(makeTable(errors)));
@@ -26,6 +29,9 @@ public class OrderErrorsOptionPanel extends JPanel {
         }};
     }
 
+    /**
+     * Open the form
+     */
     public void prompt() {
         JOptionPane.showConfirmDialog(
                 null,

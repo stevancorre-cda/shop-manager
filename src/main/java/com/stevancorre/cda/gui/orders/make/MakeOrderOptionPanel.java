@@ -11,14 +11,14 @@ import static com.stevancorre.cda.gui.GUIUtils.showError;
 
 public class MakeOrderOptionPanel extends JPanel {
     private final JComboBox<Customer> customerField;
-    private final OrderProductsList productsList;
+    private final OrderProductsTable productsList;
 
     public MakeOrderOptionPanel(final Shop shop) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentX(LEFT_ALIGNMENT);
 
         this.customerField = new JComboBox<>(new Vector<>(shop.getCustomers()));
-        this.productsList = new OrderProductsList(shop.getProducts());
+        this.productsList = new OrderProductsTable(shop.getProducts());
 
         add(makeLabel("Customer", l -> l.setLabelFor(this.customerField)));
         add(this.customerField);

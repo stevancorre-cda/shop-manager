@@ -11,8 +11,10 @@ import java.util.List;
 import static com.stevancorre.cda.gui.GUIUtils.makeLabel;
 import static com.stevancorre.cda.gui.GUIUtils.makeVerticalSpace;
 
+/**
+ * Popup thrown when you don't have enough stocks to ship your orders. Display errors for multiple orders
+ */
 public class ShipErrorsOptionPanel extends JPanel {
-    private final List<OrderErrors> errors;
     private final JTable table;
 
     public ShipErrorsOptionPanel(final int ordersCount, final double total, final List<OrderErrors> errors) {
@@ -26,7 +28,6 @@ public class ShipErrorsOptionPanel extends JPanel {
                 ordersCount == 1 ? "order was" : "orders were",
                 total)));
 
-        this.errors = errors;
         this.table = makeTable(errors);
         add(new JScrollPane(this.table));
     }
@@ -68,6 +69,9 @@ public class ShipErrorsOptionPanel extends JPanel {
         new OrderErrorsOptionPanel(errors).prompt();
     }
 
+    /**
+     * Open the form
+     */
     public void prompt() {
         JOptionPane.showConfirmDialog(
                 null,

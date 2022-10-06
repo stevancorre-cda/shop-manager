@@ -6,6 +6,9 @@ import javax.swing.*;
 
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
+/**
+ * Popup form to edit a product order
+ */
 class EditOrderProductOptionPanel extends JPanel {
     private final JFormattedTextField quantityField;
     private final OrderProduct entry;
@@ -29,6 +32,9 @@ class EditOrderProductOptionPanel extends JPanel {
         add(quantityField);
     }
 
+    /**
+     * Open the form
+     */
     public void prompt() {
         int result = JOptionPane.showConfirmDialog(
                 null,

@@ -7,15 +7,17 @@ import javax.swing.*;
 
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
+/**
+ * Popup form to edit an order product (= order entry)
+ */
 class EditOrderProductOptionPanel extends JPanel {
     private final JFormattedTextField quantityField;
-    private final Product product;
 
     EditOrderProductOptionPanel(final OrderProduct entry) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentX(LEFT_ALIGNMENT);
 
-        this.product = entry.getProduct();
+        Product product = entry.getProduct();
 
         final JTextField productField = new JTextField(entry.getProduct().toString()) {{
             setEnabled(false);
@@ -30,6 +32,11 @@ class EditOrderProductOptionPanel extends JPanel {
         add(quantityField);
     }
 
+    /**
+     * Open the form
+     *
+     * @return Validated quantity data
+     */
     public Integer prompt() {
         int result = JOptionPane.showConfirmDialog(
                 null,

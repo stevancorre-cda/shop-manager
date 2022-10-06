@@ -7,6 +7,9 @@ import java.awt.*;
 import static com.stevancorre.cda.gui.GUIUtils.makeLabel;
 import static com.stevancorre.cda.gui.GUIUtils.showError;
 
+/**
+ * Popup form to register a new customer
+ */
 class RegisterCustomerOptionPanel extends JPanel {
     private final JTextField firstNameField;
     private final JTextField lastNameField;

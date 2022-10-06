@@ -17,6 +17,9 @@ import java.util.Arrays;
 
 import static com.stevancorre.cda.gui.GUIUtils.*;
 
+/**
+ * Orders view (table with make and ship orders, with total price for finalized orders)
+ */
 public class OrdersView extends JPanel {
     private final Shop shop;
 
