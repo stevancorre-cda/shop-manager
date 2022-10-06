@@ -20,6 +20,7 @@
 
 <p align="center">
     <a href="#quick-start">Quick start</a> •
+    <a href="./USER_GUIDE.md">User guide</a> •
     <a href="#project-structure">Project sturcture</a> •
     <a href="#license">License</a> •
     <a href="#credits">Credits</a>
